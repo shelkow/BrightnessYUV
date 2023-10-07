@@ -290,14 +290,16 @@ namespace BrightnessYUV
     }
 }
 
-
-
-
-
-
-
-
-
+//яркость !!!
+/*
+float calcLuminance(int rgb)
+{
+    int r = (rgb & 0xff0000) >> 16;
+    int g = (rgb & 0xff00) >> 8;
+    int b = (rgb & 0xff);
+    return (r * 0.299f + g * 0.587f + b * 0.114f) / 256;
+}
+*/
 
 /* static String HexConverter(RGB rgb)
 {
@@ -360,15 +362,7 @@ for (int i = 0; i < 100; i++)
 
 
 
-/*
-float calcLuminance(int rgb)
-{
-    int r = (rgb & 0xff0000) >> 16;
-    int g = (rgb & 0xff00) >> 8;
-    int b = (rgb & 0xff);
-    return (r * 0.299f + g * 0.587f + b * 0.114f) / 256;
-}
-*/
+
 /*
 for (int i = 0; i < 300; i++)
 {
