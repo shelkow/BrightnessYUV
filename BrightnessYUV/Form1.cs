@@ -105,18 +105,19 @@ namespace BrightnessYUV
             }
         }
     }
-
-
     public partial class Form1 : Form
     {
         Bitmap bpm;
+        Bitmap bpm2;
         Bitmap first_image;
+        Bitmap second_image;
+
         RGB[] array_rgb = new RGB[160000];
         YUV[] array_yuv = new YUV[160000];
         public static YUV RGBToYUV(RGB rgb)
         {
             double y = 0.299*rgb.R + 0.587*rgb.G + 0.114*rgb.B;
-            double u =-0.14713* rgb.R + -0.28886*rgb.G + 0.436*rgb.B + 128;
+            double u =-0.14713* rgb.R -0.28886*rgb.G + 0.436*rgb.B + 128;
             double v = 0.615*rgb.R -0.51499*rgb.G + -0.10001*rgb.B + 128;
             int x_ = rgb.pointX;
             int y_ = rgb.pointY;
@@ -132,29 +133,13 @@ namespace BrightnessYUV
             int x_ = yuv.pointX;
             int y_ = yuv.pointY;
             
-            r = Math.Max(0, Math.Min(255, r));
-            g = Math.Max(0, Math.Min(255, g));
-            b = Math.Max(0, Math.Min(255, b));
+             r = Math.Max(0, Math.Min(255, r));
+             g = Math.Max(0, Math.Min(255, g));
+             b = Math.Max(0, Math.Min(255, b));
  
             return new RGB(r, g, b, x_, y_);
         }
-
-        public Form1()
-        {
-            InitializeComponent();
-            bpm = new Bitmap(@"C:\Users\shelk\Desktop\zakat.jpg");
-            
-            first_image = new Bitmap(bpm, new Size(400, 400));
-            pictureBox1.Image = first_image;
-
-        }
-
-
-        string[] hex_color = new string[200000];
-        int buff_index = 0;
-        int size = 160000;
-        
-        private void button2_Click(object sender, EventArgs e)
+        void TransformToYuv()
         {
             //«аполнение массива hex_color
             for (int Xcount = 0; Xcount < first_image.Width; Xcount++)
@@ -168,7 +153,7 @@ namespace BrightnessYUV
                 }
             }
             buff_index = 0;
-     
+
             int[] hex_to_rgb(int rgb)
             {
                 int[] array = new int[3];
@@ -183,7 +168,7 @@ namespace BrightnessYUV
                 array[2] = b;
                 return array;
             }
-  
+
             int hex;
             int[] rgb_pixels = new int[200000];
 
@@ -192,12 +177,10 @@ namespace BrightnessYUV
             {
                 hex = Convert.ToInt32(hex_color[id], 16);
                 rgb_pixels = hex_to_rgb(hex);
-                
+
                 return rgb_pixels;
             }
 
-      
-            
             //первод в yuv
             int iterator = 0;
             for (int i = 0; i < first_image.Width; i++)
@@ -210,21 +193,28 @@ namespace BrightnessYUV
                 }
 
             }
-            for (int i = 0; i < 100000; i++)
-            {
-                array_yuv[i].Y += 10000;
 
-            }
-            /*
-            for (int i = 0; i < 100000; i++)
-            {
-            //    array_yuv[i].Y +=100;
-            //   array_yuv[i].U += 100;
-            //    array_yuv[i].V += 1000;
+        }
+        public Form1()
+        {
+            InitializeComponent();
+            bpm = new Bitmap(@"C:\Users\shelk\Desktop\dm.png");
+            bpm2 = new Bitmap(@"C:\Users\shelk\Desktop\dm.png");
 
-            }
-            */
+            first_image = new Bitmap(bpm, new Size(400, 200));
+            pictureBox1.Image= first_image;
+            
+            second_image = new Bitmap(bpm2, new Size(400, 200));
+            pictureBox2.Image= second_image;
 
+        }
+
+        string[] hex_color = new string[200000];
+        int buff_index = 0;
+        int size = 160000;
+        
+        private void button2_Click(object sender, EventArgs e)
+        {
             //перевод обратно в rgb
             RGB[] array_rgb2 = new RGB[size];
             string[] resulthex = new string[200000];
@@ -236,9 +226,7 @@ namespace BrightnessYUV
                     array_rgb2[iterator2] = YUVToRGB(array_yuv[iterator2]);
                     iterator2++;
                 }
-
             }
-
             //покраска новыми пиксел€ми
             int iterator3 = 0;
             for (int i = 0; i < first_image.Width; i++)
@@ -246,44 +234,59 @@ namespace BrightnessYUV
                 for (int j = 0; j < first_image.Height; j++)
                 {
 
-                    first_image.SetPixel(i, j, Color.FromArgb(255, array_rgb2[iterator3].G, array_rgb2[iterator3].G, array_rgb2[iterator3].B));
+                    first_image.SetPixel(i, j, Color.FromArgb(255, array_rgb2[iterator3].R, array_rgb2[iterator3].G, array_rgb2[iterator3].B));
                     iterator3++;
                 }
 
             }
             pictureBox1.Image = first_image;
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < 100000; i++)
-            {
-                  array_yuv[i].Y +=10000;
-
-            }
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
+  
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
+          //  first_image = new Bitmap(bpm, new Size(400, 400));
+            pictureBox1.Image = first_image;
+            TransformToYuv();
             trackBar1.Minimum = 0;
             trackBar1.Maximum = 100;
+            for (int i = 0; i < first_image.Width*first_image.Height; i++)
+            {
+                //белый
+                array_yuv[i].Y+=trackBar1.Value;
+
+                //cиний
+                //array_yuv[i].U += trackBar1.Value;
+
+                //красный
+                //array_yuv[i].V += trackBar1.Value;
+
+            }
             label1.Text=trackBar1.Value.ToString();
 
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
+            first_image = new Bitmap(bpm, new Size(400, 200));
+            TransformToYuv();
+            pictureBox1.Image = first_image;
+        }
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                   // first_image = new Bitmap(openFileDialog.FileName);
+                  //  bpm2 = new Bitmap(first_image);
 
+                 //   first_image = new Bitmap(bpm2, new Size(400, 400));;
+
+                  //  pictureBox1.Image = first_image;
+                    // first_image = new Bitmap(originalImage);
+                    // pictureBox1.Image = first_image;
+                }
+            }
         }
     }
 }
@@ -321,20 +324,7 @@ label1.Text += "\nrgb=" + array_rgb2[curr_pixel].R + " " + array_rgb2[curr_pixel
 +array_rgb2[curr_pixel].pointX + " " + array_rgb2[curr_pixel].pointY;
 */
 /*
-private void button1_Click(object sender, EventArgs e)
-{
-using (OpenFileDialog openFileDialog = new OpenFileDialog())
-{
-openFileDialog.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
-if (openFileDialog.ShowDialog() == DialogResult.OK)
-{
- originalImage = new Bitmap(openFileDialog.FileName);
- pictureBox1.Image = originalImage;
- adjustedImage = new Bitmap(originalImage);
- pictureBox1.Image = adjustedImage;
-}
-}
-}
+
 */
 //«аполнение массива hex кодами
 /*
