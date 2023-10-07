@@ -170,7 +170,7 @@ namespace BrightnessYUV
             }
 
             int hex;
-            int[] rgb_pixels = new int[200000];
+            int[] rgb_pixels = new int[first_image.Width*first_image.Height];
 
             //поиск пиксела по id, возврат пиксела в массив rgb(255)(255)(255)
             int[] show_rgb(int id)
@@ -211,12 +211,11 @@ namespace BrightnessYUV
 
         string[] hex_color = new string[200000];
         int buff_index = 0;
-        int size = 160000;
         
         private void button2_Click(object sender, EventArgs e)
         {
             //перевод обратно в rgb
-            RGB[] array_rgb2 = new RGB[size];
+            RGB[] array_rgb2 = new RGB[first_image.Width*first_image.Height];
             string[] resulthex = new string[200000];
             int iterator2 = 0;
             for (int i = 0; i < first_image.Width; i++)
