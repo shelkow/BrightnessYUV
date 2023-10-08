@@ -51,10 +51,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(40, 11);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(46, 15);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(495, 283);
+            this.pictureBox1.Size = new System.Drawing.Size(566, 377);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -62,10 +61,9 @@
             // 
             this.button1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.button1.ForeColor = System.Drawing.Color.Ivory;
-            this.button1.Location = new System.Drawing.Point(96, 339);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Location = new System.Drawing.Point(110, 452);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 26);
+            this.button1.Size = new System.Drawing.Size(122, 35);
             this.button1.TabIndex = 1;
             this.button1.Text = "Открыть файл";
             this.button1.UseVisualStyleBackColor = false;
@@ -75,19 +73,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(582, 252);
+            this.label1.Location = new System.Drawing.Point(665, 336);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 15);
+            this.label1.Size = new System.Drawing.Size(0, 20);
             this.label1.TabIndex = 3;
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.HotTrack;
             this.button2.ForeColor = System.Drawing.Color.Ivory;
-            this.button2.Location = new System.Drawing.Point(355, 339);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Location = new System.Drawing.Point(406, 452);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 26);
+            this.button2.Size = new System.Drawing.Size(113, 35);
             this.button2.TabIndex = 4;
             this.button2.Text = "Применить";
             this.button2.UseVisualStyleBackColor = false;
@@ -95,10 +92,9 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(568, 24);
-            this.trackBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.trackBar1.Location = new System.Drawing.Point(649, 32);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(100, 45);
+            this.trackBar1.Size = new System.Drawing.Size(114, 56);
             this.trackBar1.TabIndex = 5;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
@@ -106,10 +102,9 @@
             // 
             this.button3.BackColor = System.Drawing.SystemColors.HotTrack;
             this.button3.ForeColor = System.Drawing.Color.Ivory;
-            this.button3.Location = new System.Drawing.Point(233, 339);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button3.Location = new System.Drawing.Point(266, 452);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(99, 26);
+            this.button3.Size = new System.Drawing.Size(113, 35);
             this.button3.TabIndex = 6;
             this.button3.Text = "Сброс";
             this.button3.UseVisualStyleBackColor = false;
@@ -117,19 +112,17 @@
             // 
             // trackBar2
             // 
-            this.trackBar2.Location = new System.Drawing.Point(568, 94);
-            this.trackBar2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.trackBar2.Location = new System.Drawing.Point(649, 125);
             this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(100, 45);
+            this.trackBar2.Size = new System.Drawing.Size(114, 56);
             this.trackBar2.TabIndex = 8;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             // 
             // trackBar3
             // 
-            this.trackBar3.Location = new System.Drawing.Point(570, 166);
-            this.trackBar3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.trackBar3.Location = new System.Drawing.Point(651, 221);
             this.trackBar3.Name = "trackBar3";
-            this.trackBar3.Size = new System.Drawing.Size(100, 45);
+            this.trackBar3.Size = new System.Drawing.Size(114, 56);
             this.trackBar3.TabIndex = 9;
             this.trackBar3.Scroll += new System.EventHandler(this.trackBar3_Scroll);
             // 
@@ -137,9 +130,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(575, 56);
+            this.label2.Location = new System.Drawing.Point(657, 75);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 15);
+            this.label2.Size = new System.Drawing.Size(115, 20);
             this.label2.TabIndex = 10;
             this.label2.Text = "Общая яркость";
             // 
@@ -147,18 +140,17 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.label3.Location = new System.Drawing.Point(593, 127);
+            this.label3.Location = new System.Drawing.Point(678, 169);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 15);
+            this.label3.Size = new System.Drawing.Size(61, 20);
             this.label3.TabIndex = 11;
             this.label3.Text = "канал Y";
             // 
             // trackBar4
             // 
-            this.trackBar4.Location = new System.Drawing.Point(568, 246);
-            this.trackBar4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.trackBar4.Location = new System.Drawing.Point(649, 328);
             this.trackBar4.Name = "trackBar4";
-            this.trackBar4.Size = new System.Drawing.Size(100, 45);
+            this.trackBar4.Size = new System.Drawing.Size(114, 56);
             this.trackBar4.TabIndex = 12;
             this.trackBar4.Scroll += new System.EventHandler(this.trackBar4_Scroll);
             // 
@@ -166,9 +158,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.label4.Location = new System.Drawing.Point(593, 199);
+            this.label4.Location = new System.Drawing.Point(678, 265);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 15);
+            this.label4.Size = new System.Drawing.Size(63, 20);
             this.label4.TabIndex = 13;
             this.label4.Text = "канал U";
             // 
@@ -176,9 +168,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.label5.Location = new System.Drawing.Point(592, 279);
+            this.label5.Location = new System.Drawing.Point(677, 372);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 15);
+            this.label5.Size = new System.Drawing.Size(62, 20);
             this.label5.TabIndex = 14;
             this.label5.Text = "канал V";
             // 
@@ -186,18 +178,18 @@
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.SystemColors.Highlight;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(246, 301);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(110, 409);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 30);
+            this.label6.Size = new System.Drawing.Size(45, 28);
             this.label6.TabIndex = 15;
             this.label6.Text = "text";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(698, 376);
+            this.ClientSize = new System.Drawing.Size(798, 501);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -213,7 +205,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
             this.ForeColor = System.Drawing.Color.White;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

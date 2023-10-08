@@ -141,7 +141,6 @@ namespace BrightnessYUV
         }
         void TransformToYuv()
         {
-            //Çàïîëíåíèå ìàññèâà hex_color
             for (int Xcount = 0; Xcount < first_image.Width; Xcount++)
             {
                 for (int Ycount = 0; Ycount < first_image.Height; Ycount++)
@@ -172,7 +171,6 @@ namespace BrightnessYUV
             int hex;
             int[] rgb_pixels = new int[first_image.Width * first_image.Height];
 
-            //ïîèñê ïèêñåëà ïî id, âîçâðàò ïèêñåëà â ìàññèâ rgb(255)(255)(255)
             int[] show_rgb(int id)
             {
                 hex = Convert.ToInt32(hex_color[id], 16);
@@ -181,7 +179,6 @@ namespace BrightnessYUV
                 return rgb_pixels;
             }
 
-            //ïåðâîä â yuv
             int iterator = 0;
             for (int i = 0; i < first_image.Width; i++)
             {
@@ -193,25 +190,19 @@ namespace BrightnessYUV
                 }
 
             }
-            //  label1.Text += "\n" + GetPixelBrightness(array_yuv[0].Y, array_yuv[0].U, array_yuv[0].V).ToString();
-
-
         }
         public Form1()
         {
             InitializeComponent();
-           // this.Width = 750;
-           // this.Height = 600;
-
-            bpm = new Bitmap(@"C:\Users\shelk\Desktop\dm.png");
+            
+           bpm = new Bitmap(@"C:\Users\shelk\Desktop\dm.png");
             
 
-            first_image = new Bitmap(bpm, new Size(495, 300));
-            pictureBox1.Image = first_image;
-            int size_img = first_image.Width * first_image.Height;
+           first_image = new Bitmap(bpm, new Size(495, 300));
+           pictureBox1.Image = first_image;
+      //      int size_img = first_image.Width * first_image.Height;
 
-            TransformToYuv();
-            //pictureBox2.Image= second_image;
+           TransformToYuv();
 
         }
 
@@ -257,7 +248,6 @@ namespace BrightnessYUV
                     }
                     break;
             }
-            //ïåðåâîä îáðàòíî â rgb
             RGB[] array_rgb2 = new RGB[first_image.Width * first_image.Height];
             int iterator2 = 0;
             for (int i = 0; i < first_image.Width; i++)
@@ -269,7 +259,6 @@ namespace BrightnessYUV
                 }
             }
 
-            //ïîêðàñêà íîâûìè ïèêñåëÿìè
             int iterator3 = 0;
             for (int i = 0; i < first_image.Width; i++)
             {
@@ -291,7 +280,7 @@ namespace BrightnessYUV
             trackBar2.Value = 0;
             trackBar3.Value = 0;
             trackBar4.Value = 0;
-
+            label6.Text = "";
             first_image = new Bitmap(bpm, new Size(495, 300));
             TransformToYuv();
 
@@ -299,19 +288,20 @@ namespace BrightnessYUV
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
+            
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    // first_image = new Bitmap(openFileDialog.FileName);
-                    //  bpm2 = new Bitmap(first_image);
+                    first_image = new Bitmap(openFileDialog.FileName);
+                    bpm = new Bitmap(openFileDialog.FileName);
+                    first_image = new Bitmap(bpm, new Size(495, 300)); 
+                    TransformToYuv();
 
-                    //   first_image = new Bitmap(bpm2, new Size(400, 400));;
+                    pictureBox1.Image = first_image;
+                  
 
-                    //  pictureBox1.Image = first_image;
-                    // first_image = new Bitmap(originalImage);
-                    // pictureBox1.Image = first_image;
                 }
             }
         }
@@ -322,7 +312,7 @@ namespace BrightnessYUV
             pictureBox1.Image = first_image;
             trackBar1.Minimum = 0;
             trackBar1.Maximum = 100;
-            label6.Text="Общая яркость"+trackBar1.Value.ToString();
+            label6.Text="Общая яркость:"+trackBar1.Value.ToString();
 
         }
         private void trackBar2_Scroll(object sender, EventArgs e)
@@ -332,7 +322,7 @@ namespace BrightnessYUV
             pictureBox1.Image = first_image;
             trackBar2.Minimum = 0;
             trackBar2.Maximum = 100;
-            label6.Text = "яркость по Y=" + trackBar2.Value.ToString();
+            label6.Text = "яркость Y:" + trackBar2.Value.ToString();
 
         }
 
@@ -343,7 +333,7 @@ namespace BrightnessYUV
             pictureBox1.Image = first_image;
             trackBar3.Minimum = 0;
             trackBar3.Maximum = 100;
-            label6.Text = "яркость по U=" + trackBar3.Value.ToString();
+            label6.Text = "яркость U:" + trackBar3.Value.ToString();
 
         }
 
@@ -354,7 +344,7 @@ namespace BrightnessYUV
             pictureBox1.Image = first_image;
             trackBar4.Minimum = 0;
             trackBar4.Maximum = 100;
-            label6.Text = "яркость по V=" + trackBar4.Value.ToString();
+            label6.Text = "яркость V:" + trackBar4.Value.ToString();
 
         }
     }
