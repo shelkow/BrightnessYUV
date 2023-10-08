@@ -107,15 +107,20 @@ namespace BrightnessYUV
     }
     public partial class Form1 : Form
     {
+       
+        RGB[] array_rgb = new RGB[300000];
+        YUV[] array_yuv = new YUV[300000];
         Bitmap bpm;
         Bitmap first_image;
-
-        RGB[] array_rgb = new RGB[3000000];
-        YUV[] array_yuv = new YUV[3000000];
+        
+      
         int trackbar_state = 0;
 
         public static YUV RGBToYUV(RGB rgb)
         {
+            // Y = 0,299 х R +0,587 х G +0,114 х B;
+            //U = -0,14713 х R – 0,28886 х G +0,436 х B +128;
+            // V = 0,615 х R – 0,51499 х G – 0,10001 х B +128;
             double y = 0.299 * rgb.R + 0.587 * rgb.G + 0.114 * rgb.B;
             double u = -0.14713 * rgb.R - 0.28886 * rgb.G + 0.436 * rgb.B + 128;
             double v = 0.615 * rgb.R - 0.51499 * rgb.G + -0.10001 * rgb.B + 128;
@@ -125,7 +130,9 @@ namespace BrightnessYUV
         }
         public static RGB YUVToRGB(YUV yuv)
         {
-
+            //R = Y + 1,13983 х (V – 128);
+            //G = Y – 0,39465 х(U – 128) – 0,58060 х(V – 128);
+            //B = Y + 2,03211 х(U – 128);
             int r = (int)(yuv.Y + 1.13983 * (yuv.V - 128));
             int g = (int)(yuv.Y - 0.39465 * (yuv.U - 128) - 0.58060 * (yuv.V - 128));
             int b = (int)(yuv.Y + 2.03211 * (yuv.U - 128));
@@ -152,10 +159,10 @@ namespace BrightnessYUV
                 }
             }
             buff_index = 0;
+            int[] array = new int[3];
 
             int[] hex_to_rgb(int hex)
             {
-                int[] array = new int[3];
                 array[0] = 0;
                 array[1] = 0;
                 array[2] = 0;
@@ -191,13 +198,13 @@ namespace BrightnessYUV
 
             }
         }
+ 
         public Form1()
         {
-            InitializeComponent();
+           InitializeComponent();
             
            bpm = new Bitmap(@"C:\Users\shelk\Desktop\dom.jpg");
-            
-
+        
            first_image = new Bitmap(bpm, new Size(550, 400));
            pictureBox1.Image = first_image;
            TransformToYuv();
@@ -269,8 +276,7 @@ namespace BrightnessYUV
             }
             pictureBox1.Image = first_image;   
         }
-
-        
+   
         private void button3_Click(object sender, EventArgs e)
         {   
             trackBar1.Value = 0;
@@ -297,7 +303,6 @@ namespace BrightnessYUV
 
                     pictureBox1.Image = first_image;
                   
-
                 }
             }
         }
@@ -345,157 +350,3 @@ namespace BrightnessYUV
         }
     }
 }
-
-
-//Y - черно-белый
-//синий - зеленый
-//красно - зеленый
-/*
-        float GetPixelBrightness(int r, int g, int b)
-        {
-            float brightness = (r * 0.299f + g * 0.587f + b * 0.114f) / 256;
-            return brightness;
-        }
-        */
-//y=0.299R+0.587G+0.114B relative luminance
-//y=0.2926R+0.7152G+0.0722B //ôîðìóëà ÿðêîñòè
-//ßðêîñòü !!!
-
-
-
-/* static String HexConverter(RGB rgb)
-{
-    return "#" + rgb.R.ToString("X2") + rgb.G.ToString("X2") + rgb.B.ToString("X2");
-}
-*/
-/*
-  for (int i = 0; i < 10; i++)
-  {
-      array_yuv[i].Y += 10;
-  }
-  int curr_pixel = 0;
-
-  label1.Text = "yuv="+array_yuv[curr_pixel].Y+" "+array_yuv[curr_pixel].U+ " "+ array_yuv[curr_pixel].V + " \nÊîîðäèíàòû ïèêñåëà=" +
-      + array_yuv[curr_pixel].pointX+" "+ array_yuv[curr_pixel].pointY;
-
-  */
-//Ïåðåâîä îáðàòíî â RGB
-
-
-/*
-label1.Text += "\nrgb=" + array_rgb2[curr_pixel].R + " " + array_rgb2[curr_pixel].G + " " + array_rgb2[curr_pixel].B + " \nÊîîðäèíàòû ïèêñåëà=" +
-+array_rgb2[curr_pixel].pointX + " " + array_rgb2[curr_pixel].pointY;
-*/
-/*
-
-*/
-//Çàïîëíåíèå ìàññèâà hex êîäàìè
-/*
-for (int i = 0; i < size; i++)
-{
-    resulthex[i]= "\nhex=" + HexConverter(array_rgb[i]);
-
-}
-for (int i = 0; i < 10; i++)
-{
-    label1.Text += resulthex[i];
-
-}
-*/
-
-// array_rgb2[0] = YUVToRGB(array_yuv[0]);
-
-/*
-for (int i = 400; i < 800; i++)
-{
-    label1.Text += "\n" + array_rgb2[i].R + " " + array_rgb2[i].G + " " + array_rgb2[i].B;
-    label1.Text += "\n" + array_rgb2[i].pointX + " " + array_rgb2[i].pointY;
-}
-
-/*
-    array_yuv[0].Y = 10;
-for (int i = 0; i < 100; i++)
-{
-
-
-}
-*/
-//label1.Text += "\n"+ array_yuv[i].Y.ToString() + "|"+ array_yuv[i].U.ToString() +"|"+ array_yuv[i].V.ToString();
-
-
-
-
-/*
-for (int i = 0; i < 300; i++)
-{
-    array_yuv[i] = RGBToYUV(array_rgb[i]);
-    //  label1.Text += "\n"+ array_rgb[i].R.ToString() + "|"+ array_rgb[i].G.ToString() +"|"+ array_rgb[i].B.ToString();
-}
-label1.Text += "Âñå2";
-*/
-
-//    for (int i = 0; i < 10; i++)
-//    {
-// label1.Text += "\n" + array_yuv[i].Y.ToString() + "|" + array_yuv[i].U.ToString() + "|" + array_yuv[i].V.ToString();
-//    }
-
-
-// int constx = 0;
-//  int consty = 1;
-/*
-int[] return_coord(int index)
-{
-int[] array = new int[400];
-for (int i = 0; i < 400; i++)
-{
-    for (int j = 0; j < 400; j++)
-    {
-        if (indexarr[i, j] == index)
-        {
-            array[0] = i;
-            array[1] = j;
-        }
-    }
-
-}
-return array;
-}
-*/
-// label1.Text += "\nÊîîðäèíàòû ïèêñåëà: x=" + return_coord(400)[constx].ToString() + " y=" + return_coord(400)[consty].ToString();
-// label1.Text += "\nÊîîðäèíàòû ïèêñåëà: x=" + return_coord(0)[constx].ToString() + " y=" + return_coord(0)[consty].ToString();
-
-
-//   label1.Text += "\n rgb=\n" + show_rgb(coord_element)[0].ToString() + "|" + show_rgb(coord_element)[1].ToString() + "|" + show_rgb(coord_element)[2].ToString();
-//    label1.Text += "\n yuv=";
-//    label1.Text += "\n" + Convert.ToInt32(array_yuv[coord_element].Y).ToString() + "|" + Convert.ToInt32(array_yuv[coord_element].U).ToString() + "|" + Convert.ToInt32(array_yuv[coord_element].V).ToString();
-/*
-  for (int i = 0; i < 100000; i++)
-  {
-     first_image.SetPixel(return_coord(i)[constx], return_coord(i)[consty], Color.Black);
-
-      //   label1.Text += "\nÊîîðäèíàòû ïèêñåëà: x=" + return_coord(i)[constx].ToString() + " y=" + return_coord(i)[consty].ToString();
-
-  }
-  pictureBox1.Image = first_image;
-*/
-
-/* 
- // Set each pixel in myBitmap to black.
- for (int Xcount = 0; Xcount < first_image.Width; Xcount++)
- {
-     for (int Ycount = 0; Ycount < first_image.Height; Ycount++)
-     {
-           label1.Text+=first_image.GetPixel(Xcount,Ycount).Name;
-      //   first_image.SetPixel(Xcount, Ycount, Color.Black);
-     }
- }
-//   pictureBox1.Image = first_image;
-
-
-}
-
-private void label1_Click(object sender, EventArgs e)
-{
-
-}
-*/
