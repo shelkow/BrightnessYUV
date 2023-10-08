@@ -108,9 +108,7 @@ namespace BrightnessYUV
     public partial class Form1 : Form
     {
         Bitmap bpm;
-        Bitmap bpm2;
         Bitmap first_image;
-        Bitmap second_image;
 
         RGB[] array_rgb = new RGB[160000];
         YUV[] array_yuv = new YUV[160000];
@@ -154,15 +152,15 @@ namespace BrightnessYUV
             }
             buff_index = 0;
 
-            int[] hex_to_rgb(int rgb)
+            int[] hex_to_rgb(int hex)
             {
                 int[] array = new int[3];
                 array[0] = 0;
                 array[1] = 0;
                 array[2] = 0;
-                int r = (rgb & 0xff0000) >> 16;
-                int g = (rgb & 0xff00) >> 8;
-                int b = (rgb & 0xff);
+                int r = (hex & 0xff0000) >> 16;
+                int g = (hex & 0xff00) >> 8;
+                int b = (hex & 0xff);
                 array[0] = r;
                 array[1] = g;
                 array[2] = b;
@@ -204,12 +202,11 @@ namespace BrightnessYUV
             this.Height = 720;
 
             bpm = new Bitmap(@"C:\Users\shelk\Desktop\dm.png");
-            bpm2 = new Bitmap(@"C:\Users\shelk\Desktop\dm.png");
+           
 
             first_image = new Bitmap(bpm, new Size(500, 300));
             pictureBox1.Image= first_image;
             int size_img= first_image.Width * first_image.Height;
-            second_image = new Bitmap(bpm2, new Size(400, 200));
             //pictureBox2.Image= second_image;
 
         }
