@@ -169,7 +169,7 @@ namespace BrightnessYUV
             }
 
             int hex;
-            int[] rgb_pixels = new int[first_image.Width * first_image.Height];
+            int[] rgb_pixels = new int[3];
 
             int[] show_rgb(int id)
             {
@@ -195,18 +195,16 @@ namespace BrightnessYUV
         {
             InitializeComponent();
             
-           bpm = new Bitmap(@"C:\Users\shelk\Desktop\dm.png");
+           bpm = new Bitmap(@"C:\Users\shelk\Desktop\dom.jpg");
             
 
-           first_image = new Bitmap(bpm, new Size(495, 300));
+           first_image = new Bitmap(bpm, new Size(550, 400));
            pictureBox1.Image = first_image;
-      //      int size_img = first_image.Width * first_image.Height;
-
            TransformToYuv();
 
         }
 
-        string[] hex_color = new string[200000];
+        string[] hex_color = new string[500000];
         int buff_index = 0;
 
         private void button2_Click(object sender, EventArgs e)
@@ -264,7 +262,6 @@ namespace BrightnessYUV
             {
                 for (int j = 0; j < first_image.Height; j++)
                 {
-
                     first_image.SetPixel(i, j, Color.FromArgb(255, array_rgb2[iterator3].R, array_rgb2[iterator3].G, array_rgb2[iterator3].B));
                     iterator3++;
                 }
@@ -281,9 +278,8 @@ namespace BrightnessYUV
             trackBar3.Value = 0;
             trackBar4.Value = 0;
             label6.Text = "";
-            first_image = new Bitmap(bpm, new Size(495, 300));
+            first_image = new Bitmap(bpm, new Size(550, 400));
             TransformToYuv();
-
             pictureBox1.Image = first_image;
         }
         private void button1_Click_1(object sender, EventArgs e)
@@ -296,7 +292,7 @@ namespace BrightnessYUV
                 {
                     first_image = new Bitmap(openFileDialog.FileName);
                     bpm = new Bitmap(openFileDialog.FileName);
-                    first_image = new Bitmap(bpm, new Size(495, 300)); 
+                    first_image = new Bitmap(bpm, new Size(550, 400)); 
                     TransformToYuv();
 
                     pictureBox1.Image = first_image;
@@ -350,6 +346,10 @@ namespace BrightnessYUV
     }
 }
 
+
+//Y - черно-белый
+//синий - зеленый
+//красно - зеленый
 /*
         float GetPixelBrightness(int r, int g, int b)
         {
