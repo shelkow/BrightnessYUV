@@ -1,9 +1,7 @@
-﻿using System.Windows.Forms;
-using System.Drawing;
-using BrightnessYUV.RGBthing;
+﻿using BrightnessYUV.RGBthing;
 using BrightnessYUV.YUVthing;
-using System.Security.Policy;
-using System.Reflection.Emit;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace BrightnessYUV
 {
@@ -112,8 +110,6 @@ namespace BrightnessYUV
         YUV[] array_yuv = new YUV[300000];
         Bitmap bpm;
         Bitmap first_image;
-        
-      
         int trackbar_state = 0;
 
         public static YUV RGBToYUV(RGB rgb)
@@ -198,12 +194,20 @@ namespace BrightnessYUV
 
             }
         }
- 
         public Form1()
         {
-           InitializeComponent();
-            
-           bpm = new Bitmap(@"C:\Users\shelk\Desktop\dom.jpg");
+            InitializeComponent();
+            trackBar1.Value = 0;
+            trackBar2.Value = 0;
+            trackBar3.Value = 0;
+            trackBar4.Value = 0;
+
+            Controls.Add(trackBar1);
+            Controls.Add(trackBar2);
+            Controls.Add(trackBar3);
+            Controls.Add(trackBar4);
+
+            bpm = new Bitmap(@"C:\Users\shelk\Desktop\dom.jpg");
         
            first_image = new Bitmap(bpm, new Size(550, 400));
            pictureBox1.Image = first_image;
@@ -311,8 +315,8 @@ namespace BrightnessYUV
             trackbar_state = 1;
 
             pictureBox1.Image = first_image;
-            trackBar1.Minimum = 0;
-            trackBar1.Maximum = 100;
+            trackBar1.Minimum = -50;
+            trackBar1.Maximum = 50;
             label6.Text="Общая яркость:"+trackBar1.Value.ToString();
 
         }
@@ -321,8 +325,8 @@ namespace BrightnessYUV
             trackbar_state = 2;
 
             pictureBox1.Image = first_image;
-            trackBar2.Minimum = 0;
-            trackBar2.Maximum = 100;
+            trackBar2.Minimum = -50;
+            trackBar2.Maximum = 50;
             label6.Text = "яркость Y:" + trackBar2.Value.ToString();
 
         }
@@ -332,8 +336,8 @@ namespace BrightnessYUV
             trackbar_state = 3;
 
             pictureBox1.Image = first_image;
-            trackBar3.Minimum = 0;
-            trackBar3.Maximum = 100;
+            trackBar3.Minimum = -50;
+            trackBar3.Maximum = 50;
             label6.Text = "яркость U:" + trackBar3.Value.ToString();
 
         }
@@ -343,8 +347,8 @@ namespace BrightnessYUV
             trackbar_state = 4;
 
             pictureBox1.Image = first_image;
-            trackBar4.Minimum = 0;
-            trackBar4.Maximum = 100;
+            trackBar4.Minimum = -50;
+            trackBar4.Maximum = 50;
             label6.Text = "яркость V:" + trackBar4.Value.ToString();
 
         }
